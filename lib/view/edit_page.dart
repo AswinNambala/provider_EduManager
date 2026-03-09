@@ -301,4 +301,14 @@ class _EditStudentsProfileState extends State<EditStudentsProfile> {
       );
     }
   }
+  @override
+  void dispose() {
+    super.dispose();
+    nameCtrl.dispose();
+    idCtrl.dispose();
+    gradeCtrl.dispose();
+    parentPhoneNumberCtrl.dispose();
+    teacherCtrl.dispose();
+    imagefile = null;
+  }
 }

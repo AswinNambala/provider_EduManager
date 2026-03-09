@@ -394,4 +394,15 @@ class _AddPageState extends State<AddPage> {
       log('Error picking image: $e');
     }
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameCtrl.dispose();
+    idCtrl.dispose();
+    gradeCtrl.dispose();
+    parentPhoneNumberCtrl.dispose();
+    teacherCtrl.dispose();
+    imagefile = null;
+  }
 }

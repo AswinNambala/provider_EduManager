@@ -14,7 +14,7 @@ class _GridViewSectionState extends State<GridViewSection> {
   @override
   Widget build(BuildContext context) {
     return Consumer<StudentController>(builder: (context, stud, index) {
-      final studentsList = stud.students;
+      final studentsList = stud.getDetails();
       if (studentsList.isEmpty) {
         return const Center(
           child: Text('No Students Details Available'),

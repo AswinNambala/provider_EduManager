@@ -71,20 +71,18 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
-        child: Consumer<StudentController>(
-          builder: (context, controller, child) {
-            return Column(
-              children: [
-                HeaderSection(),
-                controller.isGridView
-                    ? const Expanded(child: GridViewSection())
-                    : const Expanded(child: ListViewSection()),
-              ],
-            );
-          }
-        ),
-      ),
+          padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+          child: Column(
+            children: [
+              const HeaderSection(),
+              Consumer<StudentController>(
+                  builder: (context, controller, child) {
+                return controller.isGridView
+                    ? Expanded(child: const GridViewSection())
+                    : Expanded(child: const ListViewSection());
+              })
+            ],
+          )),
     );
   }
 }

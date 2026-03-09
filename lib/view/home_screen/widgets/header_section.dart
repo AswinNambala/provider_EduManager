@@ -4,9 +4,21 @@ import 'package:edu_manager_provider/widget/form_felid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HeaderSection extends StatelessWidget {
-  HeaderSection({super.key});
+class HeaderSection extends StatefulWidget {
+  const HeaderSection({super.key});
+
+  @override
+  State<HeaderSection> createState() => _HeaderSectionState();
+}
+
+class _HeaderSectionState extends State<HeaderSection> {
   final TextEditingController searchCtrl = TextEditingController();
+  @override
+  void dispose() {
+    searchCtrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -16,7 +28,10 @@ class HeaderSection extends StatelessWidget {
         children: [
           AllTextFormField(
             controller: searchCtrl,
-            onChange: (value) {},
+            onChange: (value) {
+              Provider.of<StudentController>(context, listen: false)
+                  .searchStudentsDetails(value);
+            },
             label: 'Search by name, id . . . .',
             preffixIcon: const Icon(Icons.search),
           ),
@@ -28,7 +43,8 @@ class HeaderSection extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  Provider.of<StudentController>(context, listen: false).toggleView();
+                  Provider.of<StudentController>(context, listen: false)
+                      .toggleView();
                 },
                 child: Container(
                   height: 60,
@@ -69,7 +85,8 @@ class HeaderSection extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Provider.of<StudentController>(context, listen: false).toggleView();
+                  Provider.of<StudentController>(context, listen: false)
+                      .toggleView();
                 },
                 child: Container(
                   height: 60,
