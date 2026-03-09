@@ -1,6 +1,8 @@
 import 'package:edu_manager_provider/constant/utils.dart';
+import 'package:edu_manager_provider/controller/student_controller.dart';
 import 'package:edu_manager_provider/widget/form_felid.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HeaderSection extends StatelessWidget {
   HeaderSection({super.key});
@@ -14,11 +16,9 @@ class HeaderSection extends StatelessWidget {
         children: [
           AllTextFormField(
             controller: searchCtrl,
-            onChange: (value) {
-              
-            },
+            onChange: (value) {},
             label: 'Search by name, id . . . .',
-            preffixIcon:const Icon(Icons.search),
+            preffixIcon: const Icon(Icons.search),
           ),
           const SizedBox(
             height: 15,
@@ -28,6 +28,7 @@ class HeaderSection extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
+                  Provider.of<StudentController>(context, listen: false).toggleView();
                 },
                 child: Container(
                   height: 60,
@@ -68,6 +69,7 @@ class HeaderSection extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
+                  Provider.of<StudentController>(context, listen: false).toggleView();
                 },
                 child: Container(
                   height: 60,

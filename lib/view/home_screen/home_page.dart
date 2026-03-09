@@ -1,10 +1,12 @@
 import 'package:edu_manager_provider/constant/utils.dart';
+import 'package:edu_manager_provider/controller/student_controller.dart';
 import 'package:edu_manager_provider/view/add_page.dart';
 import 'package:edu_manager_provider/view/home_screen/widgets/grid_view_section.dart';
 import 'package:edu_manager_provider/view/home_screen/widgets/header_section.dart';
 import 'package:edu_manager_provider/view/home_screen/widgets/list_veiw_section.dart';
 import 'package:edu_manager_provider/widget/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -70,11 +72,17 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
-        child: Column(
-          children: [
-            HeaderSection(),
-            isGridView ? const GridViewSection() : const ListViewSection(),
-          ],
+        child: Consumer<StudentController>(
+          builder: (context, controller, child) {
+            return Column(
+              children: [
+                HeaderSection(),
+                controller.isGridView
+                    ? const Expanded(child: GridViewSection())
+                    : const Expanded(child: ListViewSection()),
+              ],
+            );
+          }
         ),
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:edu_manager_provider/controller/student_controller.dart';
+import 'package:edu_manager_provider/view/profile_page.dart';
 import 'package:edu_manager_provider/widget/delete_warning.dart';
+import 'package:edu_manager_provider/widget/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +27,10 @@ class _ListViewSectionState extends State<ListViewSection> {
           return Card(
             color: Colors.white,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                navigatePush(
+                    context, ProfilePage(index: index, studentsData: data));
+              },
               child: ListTile(
                 leading: data.image != null
                     ? CircleAvatar(
@@ -40,9 +45,7 @@ class _ListViewSectionState extends State<ListViewSection> {
                 subtitle: Text(data.studentsId ?? 'Unknown'),
                 trailing: IconButton(
                     onPressed: () {
-                      DeleteWarning(
-                        index: index,
-                      );
+                      navigatePush(context, DeleteWarning(index: index));
                     },
                     icon: const Icon(Icons.delete)),
               ),

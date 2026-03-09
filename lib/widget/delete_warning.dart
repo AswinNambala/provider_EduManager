@@ -1,4 +1,6 @@
+import 'package:edu_manager_provider/controller/student_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DeleteWarning extends StatefulWidget {
   const DeleteWarning({super.key, required this.index});
@@ -64,6 +66,7 @@ class _DeleteWarningState extends State<DeleteWarning> {
                           ),
                         ),
                         onPressed: () {
+                          Navigator.of(context).pop();
                         },
                         child: const Text(
                           'Cancel',
@@ -78,6 +81,8 @@ class _DeleteWarningState extends State<DeleteWarning> {
                           ),
                         ),
                         onPressed: () {
+                          Provider.of<StudentController>(context)
+                              .deleteStudentsProfile(widget.index);
                         },
                         child: const Text(
                           'Delete',

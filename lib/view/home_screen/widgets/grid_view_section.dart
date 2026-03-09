@@ -1,4 +1,6 @@
 import 'package:edu_manager_provider/controller/student_controller.dart';
+import 'package:edu_manager_provider/view/profile_page.dart';
+import 'package:edu_manager_provider/widget/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +31,10 @@ class _GridViewSectionState extends State<GridViewSection> {
           itemBuilder: (context, index) {
             final data = studentsList[index];
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                navigatePush(
+                    context, ProfilePage(index: index, studentsData: data));
+              },
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(

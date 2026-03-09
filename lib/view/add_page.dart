@@ -36,7 +36,9 @@ class _AddPageState extends State<AddPage> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              navigatePushReplacement(context, const HomePage());
+            },
             icon: const Icon(
               Icons.arrow_back_ios_new,
               color: Colors.black,
@@ -331,6 +333,15 @@ class _AddPageState extends State<AddPage> {
   }
 
   void savedStudentsDetails() async {
+    if (nameCtrl.text.isEmpty ||
+        idCtrl.text.isEmpty ||
+        gradeCtrl.text.isEmpty ||
+        teacherCtrl.text.isEmpty ||
+        parentPhoneNumberCtrl.text.isEmpty) {
+      showGlassSnackBar(
+          context, 'Fill all felid', 'Recheck any felid is empty');
+      return;
+    }
     var student = StudentsClass(
       studentsName: nameCtrl.text,
       studentsId: idCtrl.text,
@@ -342,8 +353,8 @@ class _AddPageState extends State<AddPage> {
     if (mounted) {
       Provider.of<StudentController>(context, listen: false)
           .addStudents(student);
-      navigatePushReplacement(context,const HomePage());
-      showCustomSnackBar(
+      navigatePushReplacement(context, const HomePage());
+      showGlassSnackBar(
           context, 'Successfully Created', 'New Students details is created');
     }
   }
@@ -359,6 +370,7 @@ class _AddPageState extends State<AddPage> {
     teacherCtrl.clear();
     parentPhoneNumberCtrl.clear();
     imagefile = null;
+    navigatePushReplacement(context, const HomePage());
   }
 
   Future<void> pickImage({bool resize = false}) async {

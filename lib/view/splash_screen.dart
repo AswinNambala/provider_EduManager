@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:edu_manager_provider/constant/utils.dart';
 import 'package:edu_manager_provider/view/home_screen/home_page.dart';
+import 'package:edu_manager_provider/widget/navigation.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -24,12 +25,7 @@ class _SplashPageState extends State<SplashPage> {
     });
 
     Timer(const Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ),
-      );
+      navigatePushReplacement(context, const HomePage());
     });
   }
 
@@ -41,10 +37,10 @@ class _SplashPageState extends State<SplashPage> {
         child: AnimatedOpacity(
           duration: const Duration(seconds: 2),
           opacity: opacity,
-          child:const Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Icon(
+              Icon(
                 Icons.school,
                 size: 90,
                 color: Colors.black,

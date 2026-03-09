@@ -5,6 +5,8 @@ class StudentController extends ChangeNotifier {
   List<StudentsClass> students = [];
   List<StudentsClass> filterStudents = [];
   String searchQuery = '';
+  bool isGridView = false;
+
   void addStudents(StudentsClass student) {
     students.add(student);
     notifyListeners();
@@ -12,6 +14,11 @@ class StudentController extends ChangeNotifier {
 
   void deleteStudentsProfile(int index) {
     students.removeAt(index);
+    notifyListeners();
+  }
+
+  void toggleView() {
+    isGridView = !isGridView;
     notifyListeners();
   }
 
